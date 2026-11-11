@@ -20,3 +20,11 @@ repos:
     rev: v8.30.0
     hooks:
     -   id: gitleaks
+
+-   repo: local
+    hooks:
+    -   id: forbid-personal-data
+        name: Forbid personal data files
+        entry: Personal data files must never be committed
+        language: fail
+        files: '(\.csv|\.zip)$|^(linkedin_export|output)/|^profil\.md$'
