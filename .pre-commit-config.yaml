@@ -21,6 +21,12 @@ repos:
     hooks:
     -   id: gitleaks
 
+-   repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.32.0
+    hooks:
+    -   id: zizmor
+        args: [--offline]
+
 -   repo: local
     hooks:
     -   id: forbid-personal-data
