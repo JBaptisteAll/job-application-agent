@@ -8,6 +8,12 @@ Thanks for your interest in improving job-application-agent. This guide explains
 - Set up your environment by following the [development setup](README.md#development-setup) section of the README. The pre-commit hooks must be installed before your first commit.
 - Never commit personal data: CVs, LinkedIn archives, or generated profiles. The hooks block the most common cases, but you remain responsible for what you push.
 
+## Who can open a pull request
+
+Issues are open to everyone. Pull requests are limited to collaborators while the project is in its early stage.
+
+To contribute code, open an issue first to discuss the change. If it fits the project, the maintainer may invite you as a collaborator so you can open a pull request.
+
 ## Branch naming
 
 Create your branch from an up-to-date `main`, using the format `type/issue-number-short-summary`:
