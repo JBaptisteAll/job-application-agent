@@ -1,0 +1,26 @@
+name: Task
+description: Plan a piece of work, such as a feature, a configuration change or documentation.
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should this task achieve, and why?
+    validations:
+      required: true
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Tasks
+      description: Break the work into small steps.
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: done-criteria
+    attributes:
+      label: Done when
+      description: How will we know this task is finished?
+    validations:
+      required: true
