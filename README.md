@@ -1,5 +1,7 @@
 # job-application-agent
 
+**English** | [Français](README.fr.md)
+
 Generates CVs and cover letters tailored to each job offer from a LinkedIn archive, with human review.
 
 ## Development setup
@@ -27,3 +29,7 @@ Prerequisites: Git and [uv](https://docs.astral.sh/uv/).
    ```
 
 From then on, a commit that fails a check is blocked. Fix the reported issue, run `git add` again, then commit.
+
+## Contributing
+
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request, and [SECURITY.md](SECURITY.md) to report a vulnerability.
