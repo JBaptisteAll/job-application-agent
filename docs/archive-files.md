@@ -1,6 +1,6 @@
 # LinkedIn archive files
 
-> Status: phase 1 specification. Related issues: #15 (this document), #16 (onboarding), #44 (contacts feature), #50 (differences between exports).
+> Status: phase 1 specification. Related issues: #15 (this document), #14 (`profil.md` structure), #16 (onboarding), #44 (contacts feature), #50 (differences between exports).
 
 This document defines which files and columns of the LinkedIn data export the agent may read, how it finds them, and what it does when one is missing. Any file or column not listed here is ignored by design.
 
@@ -79,9 +79,8 @@ Two files were reviewed and deliberately left out:
 
 ## Missing files and missing values
 
-- **Required sections**: identity, contact details, experience, education, skills and languages. If their file or value is missing, `profil.md` shows `[À COMPLÉTER]`.
-- **Optional sections**: certifications, projects, volunteering and the recommendations rule. If their file is missing, the section is left out.
-- The agent refuses to generate a CV while `profil.md` still contains `[À COMPLÉTER]` (see #16).
+- A missing file never stops the agent. The fields it would have filled are written as `[À COMPLÉTER]` in `profil.md`, so the user can complete them or choose not to show them.
+- How `profil.md` handles missing values, hidden values and the required minimum is defined in [`profil-structure.md`](profil-structure.md).
 
 ## Known data quality issues
 
