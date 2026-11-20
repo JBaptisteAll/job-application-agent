@@ -1,6 +1,6 @@
 # LinkedIn archive files
 
-> Status: phase 1 specification. Related issues: #15 (this document), #14 (`profil.md` structure), #16 (onboarding), #44 (contacts feature), #50 (differences between exports).
+> Status: phase 1 specification. Related issues: #15 (this document), #14 (`profil.md` structure), #16 (onboarding), #44 (contacts feature), #50 (differences between exports), #54 (approved cover letters as style models).
 
 This document defines which files and columns of the LinkedIn data export the agent may read, how it finds them, and what it does when one is missing. Any file or column not listed here is ignored by design.
 
@@ -16,14 +16,15 @@ These choices are made for usefulness, cost and reliability. The user processes 
 
 ## Data sources
 
-- **The LinkedIn data export** (`Complete_LinkedInDataExport_<MM-DD-YYYY>.zip`) is the only data source.
+- **The LinkedIn data export** (`Complete_LinkedInDataExport_<MM-DD-YYYY>.zip`) is the main data source.
+- **Former cover letters** (PDF or DOCX) that the user may place in `cover_letters/`. They are optional, and only used to capture the writing style (see [`onboarding.md`](onboarding.md#writing-style)).
 - **The profile PDF** downloaded from LinkedIn is not read by the agent. It is used only as a reference in tests (#31). Comparing it with the export showed two gaps, the LinkedIn profile URL and the field of study, which the user fills in `profil.md`.
 
 ## Allowed files and columns
 
 | File | Columns read | Used for |
 | --- | --- | --- |
-| `Profile.csv` | First Name, Last Name, Headline, Summary, Geo Location, Websites | Name, headline, summary, city, portfolio link |
+| `Profile.csv` | First Name, Last Name, Headline, Summary, Geo Location, Websites | Name, headline, summary, city (pre-fills the first search zone), portfolio link |
 | `Email Addresses.csv` | Email Address, Primary | Contact email: the primary address only |
 | `PhoneNumbers.csv` | Number, Type | Contact phone number |
 | `Positions.csv` | Company Name, Title, Description, Location, Started On, Finished On | Experience |
@@ -37,16 +38,25 @@ These choices are made for usefulness, cost and reliability. The user processes 
 
 **Recommendations rule:** if at least one recommendation has the status `VISIBLE`, the CV ends with "References available on request". The names and text of recommendations are never read, and recommendations are never mentioned in the cover letter.
 
-### File used only by an optional feature
+### Files used only by optional features
 
 | File | Columns read | Used for |
 | --- | --- | --- |
 | `Connections.csv` | All | Contacts feature (#44) |
+| `Shares.csv` | Date, ShareCommentary | Writing style (section 12 of `profil.md`) |
+
+#### `Connections.csv`
 
 - This file is read **only** by the contacts feature, never during profile generation.
 - Code filters connections by the target company before any AI call.
 - Messages are drafted only. The user always sends them manually, since LinkedIn's terms forbid automated messaging.
 - The file starts with a few lines of notes before the header row. The parser skips them.
+
+#### `Shares.csv`
+
+- This file contains the user's own posts. It is read **only** if the user answered `posts` or `les deux` to the writing style question of the onboarding (see [`onboarding.md`](onboarding.md#writing-style)).
+- Code selects up to 10 recent posts with at least 500 characters, and removes emojis, hashtags and links before any AI call.
+- The AI writes a style portrait from them once. The posts themselves are never copied into a document.
 
 ### Pending decision
 
@@ -95,6 +105,7 @@ Found in real exports. The archive parser (#21) must handle them:
 - The same phone number can appear several times in different formats, with empty rows.
 - `Skills.csv` contains near-duplicates, such as `Python` and `Python (langage de programmation)`, in several languages.
 - Project titles can contain emojis, and project URLs can be empty.
+- In `Shares.csv`, line breaks inside a post appear as a quote, a line break and a quote (`"` + new line + `"`), which must be cleaned before the text is used.
 
 ## Open questions
 
