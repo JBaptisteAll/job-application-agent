@@ -1,12 +1,12 @@
 # `profil.md` structure
 
-> Status: phase 1 specification. Related issues: #14 (this document), #15 (archive files), #16 (onboarding), #24 (contradictions), #25 (condensed texts and translations), #55 (English interface texts).
+> Status: phase 1 specification. Related issues: #14 (this document), #15 (archive files), #16 (onboarding), #24 (contradictions), #25 (condensed texts and translations), #55 (English interface texts), #57 (experience and project files).
 
-`profil.md` is the single profile file of the user. Every later step reads it: CV, cover letter and offer scoring. This document defines its layout, its sections and fields, the source of each value, and how missing or hidden values are handled.
+`profil.md` is the main profile file of the user. Every later step reads it: CV, cover letter and offer scoring. Experiences and projects are stored in two companion files, `experiences.md` and `projets.md` (see [`experience-project-files.md`](experience-project-files.md)). This document defines its layout, its sections and fields, the source of each value, and how missing or hidden values are handled.
 
 ## Principles
 
-1. **Single source of truth.** `profil.md` replaces the three files of the current workflow (see [Replaced files](#replaced-files)). Every fact is written once.
+1. **Single source of truth.** `profil.md`, `experiences.md` and `projets.md` replace the three files of the current workflow (see [Replaced files](#replaced-files)). Every piece of information is written in one place only: `profil.md` points to the two other files instead of repeating their content.
 2. **Pre-filled, then corrected by the user.** The agent fills everything it can from the LinkedIn archive (see [`archive-files.md`](archive-files.md)). The user corrects `profil.md` itself, never a generated CV or cover letter, so every later document stays consistent.
 3. **Every value records its source.** This lets the agent detect contradictions when the archive changes (#24).
 4. **Facts once, texts in two languages.** Names, dates, links and contact details are written once. Texts used in documents have a French and an English version. The agent picks the version that matches the language of the job offer.
@@ -44,6 +44,7 @@ This exact text follows the front matter (French version):
 > - Remplace chaque `[À COMPLÉTER]` : aucun CV n'est généré tant qu'il en reste un.
 > - Tu ne veux pas afficher une information (téléphone, projets…) ? Remplace sa valeur par `[NE PAS AFFICHER]` : elle n'apparaîtra sur aucun document. Seuls ton prénom, ton nom et au moins un moyen de contact (email, téléphone ou LinkedIn) sont obligatoires.
 > - Relis les textes en français **et** en anglais.
+> - Tes expériences et tes projets sont dans `experiences.md` et `projets.md` : relis-les aussi.
 > - Quand tout est bon, passe `reviewed: false` à `reviewed: true`, tout en haut du fichier.
 >
 > **Les commentaires `<!-- src: ... -->`**
@@ -138,15 +139,11 @@ A table with one row per zone, 5 at most. The first row is pre-filled from `Prof
 
 ### 4. Expériences
 
-One entry per position, most recent first.
+A reference only. Positions, with their dates, locations and bullet point banks, are stored in `experiences.md` (see [`experience-project-files.md`](experience-project-files.md)). The section contains this single line:
 
-| Field | Source | Notes |
-| --- | --- | --- |
-| Entreprise, Poste, Lieu | `Positions.csv` | |
-| Début, Fin | `Positions.csv` | `YYYY-MM` or `présent` |
-| Texte complet | `Positions.csv` (Description) | Original language. Used as source material for cover letters. |
-| Version CV (FR) | ai | Condensed bullet points for the CV |
-| Version CV (EN) | ai | Translation |
+```markdown
+Voir [`experiences.md`](experiences.md).
+```
 
 ### 5. Formation
 
@@ -177,13 +174,11 @@ Nom, Organisme, Date, Lien, from `Certifications.csv`.
 
 ### 8. Projets
 
-| Field | Source | Notes |
-| --- | --- | --- |
-| Titre, Début, Fin, Lien | `Projects.csv` | The link is often empty in the archive |
-| Stack | ai suggestion | Main tools, for example `Python · dbt · Airflow` |
-| Texte complet | `Projects.csv` (Description) | Original language |
-| Version CV (FR) | ai | One or two lines |
-| Version CV (EN) | ai | Translation |
+A reference only. Projects, with their links, stacks and summaries, are stored in `projets.md` (see [`experience-project-files.md`](experience-project-files.md)). The section contains this single line:
+
+```markdown
+Voir [`projets.md`](projets.md).
+```
 
 ### 9. Langues
 
@@ -210,15 +205,15 @@ Optional. Left out when the user answered `aucun` to the style question. How the
 
 ## Replaced files
 
-`profil.md` replaces the three profile files of the current workflow:
+`profil.md`, `experiences.md` and `projets.md` replace the three profile files of the current workflow:
 
-| Current file | Content | New location in `profil.md` |
+| Current file | Content | New location |
 | --- | --- | --- |
-| `competences.txt` | Identity, search, stack, experiences, projects, positioning | Sections 1 to 4, 6 and 8 |
-| `skills_completes.txt` | Full skill list with levels, soft skills, safety rule | Section 6 and its safety rule. Levels are not kept. |
-| `projets_portfolio.txt` | Projects in French and English | Section 8 |
+| `competences.txt` | Identity, search, stack, experiences, projects, positioning | `profil.md` sections 1 to 3 and 6, `experiences.md`, `projets.md` |
+| `skills_completes.txt` | Full skill list with levels, soft skills, safety rule | `profil.md` section 6 and its safety rule. Levels are not kept. |
+| `projets_portfolio.txt` | Projects in French and English | `projets.md` |
 
-These files contradict each other and the LinkedIn archive on several values, such as the contact email or the number of learners coached. A single file removes this risk.
+These files contradict each other and the LinkedIn archive on several values, such as the contact email or the number of learners coached. Writing each piece of information in one place only removes this risk.
 
 ## Fictional example
 
@@ -265,22 +260,7 @@ reviewed: false
 
 ## 4. Expériences
 
-### Data Analyst — Exemple SA
-
-- Lieu : Lyon, France <!-- src: linkedin, Positions.csv -->
-- Début : 2024-03 <!-- src: linkedin, Positions.csv -->
-- Fin : présent <!-- src: linkedin, Positions.csv -->
-
-**Texte complet** <!-- src: linkedin, Positions.csv -->
-Analyse des ventes pour trois équipes commerciales, création de tableaux de bord et automatisation du reporting.
-
-**Version CV (FR)** <!-- src: ai -->
-- Création de tableaux de bord de suivi commercial pour 3 équipes
-- Automatisation d'un reporting hebdomadaire en Python
-
-**CV version (EN)** <!-- src: ai -->
-- Built sales monitoring dashboards for 3 teams
-- Automated a weekly report in Python
+Voir [`experiences.md`](experiences.md).
 
 ## 6. Compétences
 

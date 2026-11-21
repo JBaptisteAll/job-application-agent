@@ -1,8 +1,8 @@
 # Onboarding
 
-> Status: phase 1 specification. Related issues: #16 (this document), #14 (`profil.md` structure), #15 (archive files), #54 (approved cover letters as style models), #55 (English interface texts).
+> Status: phase 1 specification. Related issues: #16 (this document), #14 (`profil.md` structure), #15 (archive files), #54 (approved cover letters as style models), #55 (English interface texts), #57 (experience and project files), #58 (GitHub repositories).
 
-Onboarding is the short conversation the agent has with the user on the first run. It collects what the LinkedIn archive cannot tell, and writes the answers into `profil.md`. This document defines when onboarding runs, the interface language, the questions, the expected answer formats, and how the writing style is captured.
+Onboarding is the short conversation the agent has with the user on the first run. It collects what the LinkedIn archive cannot tell, and writes the answers into `profil.md`. The same first run also builds `experiences.md` and `projets.md` (see [`experience-project-files.md`](experience-project-files.md)). This document defines when onboarding runs, the interface language, the questions, the expected answer formats, and how the writing style is captured.
 
 ## Principles
 
@@ -14,8 +14,9 @@ Onboarding is the short conversation the agent has with the user on the first ru
 
 ## When onboarding runs
 
-- **First run:** the agent parses the archive, pre-fills `profil.md`, asks the questions below, writes the answers, then stops and asks the user to review the file (`reviewed: false`). No CV or cover letter is generated before the review.s
-- **Later runs:** no questions. The user edits `profil.md` directly. If a new archive adds an entry with missing values (for example a new education without a field of study), the agent writes `[À COMPLÉTER]` and lists the fields to complete, without asking.
+- **First run:** the agent parses the archive, pre-fills `profil.md`, asks the questions below and writes the answers. It then builds `experiences.md` (bullet point banks) and `projets.md` (project summaries), which needs no question. Finally, it stops and asks the user to review the three files. No CV or cover letter is generated while one of them still has `reviewed: false`.
+- **Cost:** the first run is the most expensive one, because the AI writes every bullet point and summary once. Later runs only select and adapt this content, so they are cheaper.
+- **Later runs:** no questions. The user edits `profil.md` directly. If a new archive adds an entry with missing values (for example a new education without a field of study), the agent writes `[À COMPLÉTER]` and lists the fields to complete, without asking. A new position or project gets its bullet points or summary, and `reviewed` goes back to `false` in the file concerned.
 
 ## Interface language
 
@@ -99,6 +100,8 @@ Rules for job offers:
 | --- | --- | --- | --- | --- |
 | 8 | Quelle est l'adresse de ton profil LinkedIn ? | LinkedIn (section 1) | URL starting with `https://www.linkedin.com/in/` | Yes |
 | 9 | As-tu un profil GitHub ? | GitHub (section 1) | URL starting with `https://github.com/` | Yes |
+
+When #58 is implemented, an optional question follows question 9: may the agent read the user's public repositories to enrich `projets.md`?
 | 10 | Quel est le domaine d'études de « {formation} » ? | Domaine (section 5) | Free text, asked once per education entry. Skipped if there is none. | Yes |
 
 ### C. Style d'écriture (section 12)
@@ -141,7 +144,7 @@ If the user answers `lettres` or `les deux` and `cover_letters/` is empty, the a
 
 ### Privacy
 
-`cover_letters/` contains personal data (companies, recipients, addresses). Like the archive and `profil.md`, it is excluded by `.gitignore` and blocked by the pre-commit hook that prevents committing personal data files.
+`cover_letters/` contains personal data (companies, recipients, addresses). Like the archive, `profil.md`, `experiences.md` and `projets.md`, it is excluded by `.gitignore` and blocked by the pre-commit hook that prevents committing personal data files.
 
 ### Later: approved generated letters
 
