@@ -33,4 +33,4 @@ repos:
         name: Forbid personal data files
         entry: Personal data files must never be committed
         language: fail
-        files: '(\.csv|\.zip)$|^(linkedin_export|output)/|^profil\.md$'
+        files: '(\.csv|\.zip)$|^(linkedin_export|output|cover_letters)/|^(profil|experiences|projets)\.md$'
