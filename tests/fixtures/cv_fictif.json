@@ -1,0 +1,77 @@
+{
+  "nom": "Camille Martin",
+  "titre_cv": "Data Analyst - Pricing & Revenue",
+  "contact": [
+    {"label": "06 00 00 00 00"},
+    {"label": "camille.martin@example.com", "url": "mailto:camille.martin@example.com"},
+    {"label": "Lyon"},
+    {"label": "LinkedIn", "url": "https://www.linkedin.com/in/camille-martin-example"},
+    {"label": "GitHub", "url": "https://github.com/camille-example"},
+    {"label": "Portfolio", "url": "https://camille-example.github.io"}
+  ],
+  "profil": "Data Analyst avec 6 ans d'expérience en revenue management dans l'hôtellerie avant une reconversion dans la data. Je construis des pipelines SQL et dbt fiables et des tableaux de bord Power BI utilisés par les équipes commerciales. Habituée à traduire des besoins métier en indicateurs de pricing, avec une attention particulière à la qualité des données.",
+  "competences": [
+    {"categorie": "Langages", "liste": "SQL, Python (Pandas)"},
+    {"categorie": "Transformation", "liste": "dbt, modélisation en étoile, tests de qualité"},
+    {"categorie": "Bases de données", "liste": "PostgreSQL, Snowflake"},
+    {"categorie": "Visualisation", "liste": "Power BI, Streamlit"},
+    {"categorie": "Outils", "liste": "Git, GitHub Actions, Docker"}
+  ],
+  "certifications": "Databricks Fundamentals, dbt Fundamentals",
+  "experiences": [
+    {
+      "intitule": "Data Analyst",
+      "dates": "03/2025 – présent",
+      "entreprise": "Exemple Data SAS",
+      "lieu": "Lyon",
+      "points": [
+        "Conception d'un modèle dbt de suivi des ventes, de l'ingestion aux marts, avec 40 tests automatisés",
+        "Création de 5 tableaux de bord Power BI pour les équipes commerciales et la direction",
+        "Automatisation du reporting hebdomadaire avec GitHub Actions, 4 heures gagnées par semaine"
+      ]
+    },
+    {
+      "intitule": "Revenue Manager",
+      "dates": "2019 – 2024",
+      "entreprise": "Hôtel Fictif & Spa",
+      "lieu": "Annecy",
+      "points": [
+        "Suivi quotidien des KPIs de pricing (taux d'occupation, RevPAR) pour la direction",
+        "Analyse des segments clients pour ajuster la stratégie tarifaire saisonnière"
+      ]
+    },
+    {
+      "intitule": "Conseillère commerciale",
+      "dates": "2015 – 2019",
+      "entreprise": "Croisières Exemple",
+      "lieu": "Marseille",
+      "points": []
+    }
+  ],
+  "projets": [
+    {
+      "nom": "Airline Pricing Analytics",
+      "stack": "SQL · dbt · Power BI",
+      "synthese": "Entrepôt de données modélisé avec dbt sur 500 000 billets fictifs, avec un mart de marge par siège et 30 tests qualité automatisés pour repérer les routes peu rentables."
+    },
+    {
+      "nom": "Weather Data Pipeline",
+      "stack": "Python · GitHub Actions · Streamlit",
+      "synthese": "Pipeline ETL planifié qui collecte chaque jour des prévisions météo et compare leur fiabilité dans une application Streamlit publique."
+    },
+    {
+      "nom": "Hotel Bookings Pipeline",
+      "stack": "SQL · dbt · Docker",
+      "synthese": "Pipeline analytique sur 100 000 réservations fictives, conteneurisé avec Docker, avec des tests de qualité sur les prix aberrants et une documentation dbt publiée en ligne."
+    }
+  ],
+  "formation": [
+    {"diplome": "Titre RNCP Niveau 6 - Data Analyst", "ecole": "École Fictive de la Data, Lyon", "dates": "2024 – 2025"}
+  ],
+  "langues": "Français (langue maternelle), Anglais (courant, C1)",
+  "divers": [
+    {"libelle": "Bénévolat", "texte": "Data Analyst, Association Exemple (depuis 2025)"},
+    {"libelle": "Centres d'intérêt", "texte": "Escalade et randonnée"}
+  ],
+  "references": true
+}

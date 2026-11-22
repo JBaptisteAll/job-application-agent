@@ -1,6 +1,6 @@
 # Editable areas of the CV and cover letter
 
-> Status: phase 1 specification. Related issues: #17 (this document), #14 (`profil.md` structure), #16 (onboarding), #57 (experience and project files).
+> Status: phase 1 specification, updated in phase 2. Related issues: #17 (this document), #14 (`profil.md` structure), #16 (onboarding), #18 (CV template), #57 (experience and project files).
 
 This document defines what the agent may change in the CV and the cover letter for each job offer, and what always stays untouched. It is the main safeguard against invented content: every rule below can be checked automatically.
 
@@ -27,12 +27,11 @@ This document defines what the agent may change in the CV and the cover letter f
 
 | Area | Source | Rule |
 | --- | --- | --- |
-| Name and contact details | `profil.md`, section 1 | Email, phone, LinkedIn, GitHub and portfolio as written. A hidden value is not shown. |
+| Name and contact details | `profil.md`, section 1 | Phone, email, city, LinkedIn, GitHub and portfolio, on a single line. Links are shown as short clickable labels (`LinkedIn`, `GitHub`, `Portfolio`), not as full addresses. A hidden value is not shown, with its separator. |
 | Company, job title, location and dates of each experience | `experiences.md` | Copied in the language of the offer |
 | Education | `profil.md` | Copied unchanged |
-| Certifications | `profil.md`, section 7 | Copied unchanged |
-| Languages | `profil.md`, section 9 | Copied unchanged |
-| Volunteering | `profil.md`, section 10 | Copied unchanged, if shown |
+| Certifications | `profil.md`, section 7 | One line at the end of the skills section: "Certifications: name, name". Not shown if there is none. |
+| Languages | `profil.md`, section 9 | First line of the "Langues & divers" section |
 | "References available on request" | `profil.md`, section 11 | Shown only if the value is `oui`, as defined in `profil-structure.md` |
 | Layout | CV template | Never changed |
 
@@ -42,8 +41,9 @@ This document defines what the agent may change in the CV and the cover letter f
 | --- | --- | --- |
 | Displayed location | Search zones from the onboarding (#16) | The zone that matches the offer. If the offer matches no zone, the agent uses the first zone and flags the offer as out of scope. |
 | Skills | `profil.md`, section 6 | The agent filters and reorders the skills, starting with those named in the offer. It never adds a skill and never renames one. |
-| Experience bullet points | `experiences.md` | 2 or 3 points per position, chosen by identifier. Experiences stay in reverse chronological order. |
-| Projects | `projets.md` | The agent chooses and orders the projects that best match the offer. |
+| Experience bullet points | `experiences.md` | 0 to 3 points per position, chosen by identifier: 2 or 3 for relevant positions, 0 or 1 for old positions or positions unrelated to the offer. Experiences stay in reverse chronological order. |
+| Projects | `projets.md` | The agent chooses and orders the projects that best match the offer. At least two projects are shown when two or more exist. |
+| Miscellaneous lines | `profil.md`, sections 10 and 13 | Up to two lines below the languages, chosen among volunteering, open source contributions, coding competitions and interests (see [Page fit](#page-fit)). |
 | Hidden items | `experiences.md`, `projets.md` | An experience or a project with `Afficher: non` never appears. |
 | Oldest experience | `experiences.md` | May be removed in favour of a project (see [Removing the oldest experience](#removing-the-oldest-experience)). |
 
@@ -53,7 +53,7 @@ This document defines what the agent may change in the CV and the cover letter f
 | --- | --- | --- |
 | CV title | Job offer | The exact title of the offer, word for word, so that ATS filters match it. If the title contains a seniority level (Senior, Lead, Confirmé…) or matches no target role in `profil.md`, the agent flags it. |
 | Profile paragraph | `profil.md`, `experiences.md`, `projets.md` | At most 5 lines in the template. Uses the keywords of the offer and highlights the most relevant experience and skills. Facts only from the source files. |
-| Project synthesis | `projets.md` | 2 or 3 lines written from the 120 to 150 word summary, as defined in `experience-project-files.md`. |
+| Project synthesis | `projets.md` | 2 to 4 lines written from the 120 to 150 word summary: 2 or 3 lines by default, up to 4 when space remains (see [Page fit](#page-fit)). |
 | Experience bullet points | `experiences.md` | Small adjustments only (see below). |
 
 ### Small adjustments
@@ -75,9 +75,21 @@ The agent may adjust a selected bullet point to match the offer, within these li
 
 **Check:** every tool and every figure in an adjusted point is present in the original point.
 
+### Page fit
+
+The CV always fits on one page. The agent fills the page in this order of priority:
+
+1. Relevant experiences with 2 or 3 bullet points each.
+2. At least two projects, when two or more exist.
+3. Old or unrelated experiences, with 0 or 1 bullet point each. With 0 points, only the line with the job title, company and dates is shown, so the timeline has no gap.
+4. If space remains: longer project syntheses (up to 4 lines, starting with the most relevant project), then more projects.
+5. If space remains: up to two miscellaneous lines in "Langues & divers". Lines related to the offer come first (open source, coding competitions, data volunteering), then the others, such as interests.
+
+If the CV still does not fit, the agent removes the oldest experience as a last resort (see below).
+
 ### Removing the oldest experience
 
-The agent may remove an experience to make room for a personal project that matches the offer better. To keep this choice predictable:
+As a last resort, the agent may remove an experience to make room for a personal project that matches the offer better. To keep this choice predictable:
 
 - Only the **oldest** shown experience can be removed. An experience in the middle of the timeline is never removed, so the CV has no gap.
 - At most **one** experience is removed per CV.
@@ -181,6 +193,9 @@ Every rule of this document can be tested automatically:
 | Every tool and every figure exists in the source files | Written areas |
 | Every tool and every figure of an adjusted point exists in the original point | Small adjustments |
 | At most one experience is removed, and it is the oldest | Experiences |
+| At least two projects are shown when two or more exist | Projects |
+| At most two miscellaneous lines are shown | Langues & divers |
+| The CV fits on one page after PDF export | CV |
 | Every experience and every project cited in the letter is shown on the CV | Cover letter and CV |
 | The CV title and the letter subject use the same title | CV and cover letter |
 | The CV and the letter show the same location | CV and cover letter |

@@ -30,6 +30,22 @@ Prérequis : Git et [uv](https://docs.astral.sh/uv/).
 
 Dès lors, un commit qui échoue à une vérification est bloqué. Corrigez le problème signalé, relancez `git add`, puis refaites le commit.
 
+## Lancer les tests
+
+1. Installez le projet et ses dépendances de développement :
+
+   ```
+   uv sync
+   ```
+
+2. Lancez les tests :
+
+   ```
+   uv run pytest
+   ```
+
+Le modèle de CV est `src/job_application_agent/templates/cv_template.docx`. Il peut être modifié dans Word : tapez chaque balise `{{ ... }}` ou `{% ... %}` d'un seul trait, sans changer sa mise en forme au milieu, puis lancez les tests pour vérifier que toutes les balises fonctionnent encore.
+
 ## Contribuer
 
 Les contributions sont les bienvenues. Lisez [CONTRIBUTING.md](CONTRIBUTING.md) (en anglais) avant d'ouvrir une pull request, et [SECURITY.md](SECURITY.md) pour signaler une vulnérabilité.

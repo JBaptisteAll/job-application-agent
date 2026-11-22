@@ -1,0 +1,24 @@
+[project]
+name = "job-application-agent"
+version = "0.1.0"
+description = "Generates CVs and cover letters tailored to each job offer from a LinkedIn archive, with human review."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Jean-Baptiste Allombert" }]
+requires-python = ">=3.13"
+dependencies = [
+    "docxtpl>=0.20.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

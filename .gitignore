@@ -14,3 +14,8 @@ linkedin_export/
 /projets.md
 cover_letters/
 output/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/

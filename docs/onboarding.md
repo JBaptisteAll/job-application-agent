@@ -1,6 +1,6 @@
 # Onboarding
 
-> Status: phase 1 specification. Related issues: #16 (this document), #14 (`profil.md` structure), #15 (archive files), #54 (approved cover letters as style models), #55 (English interface texts), #57 (experience and project files), #58 (GitHub repositories).
+> Status: phase 1 specification. Related issues: #16 (this document), #14 (`profil.md` structure), #15 (archive files), #54 (approved cover letters as style models), #55 (English interface texts), #57 (experience and project files), #58 (GitHub repositories), #18 (CV template).
 
 Onboarding is the short conversation the agent has with the user on the first run. It collects what the LinkedIn archive cannot tell, and writes the answers into `profil.md`. The same first run also builds `experiences.md` and `projets.md` (see [`experience-project-files.md`](experience-project-files.md)). This document defines when onboarding runs, the interface language, the questions, the expected answer formats, and how the writing style is captured.
 
@@ -100,9 +100,9 @@ Rules for job offers:
 | --- | --- | --- | --- | --- |
 | 8 | Quelle est l'adresse de ton profil LinkedIn ? | LinkedIn (section 1) | URL starting with `https://www.linkedin.com/in/` | Yes |
 | 9 | As-tu un profil GitHub ? | GitHub (section 1) | URL starting with `https://github.com/` | Yes |
+| 10 | Quel est le domaine d'études de « {formation} » ? | Domaine (section 5) | Free text, asked once per education entry. Skipped if there is none. | Yes |
 
 When #58 is implemented, an optional question follows question 9: may the agent read the user's public repositories to enrich `projets.md`?
-| 10 | Quel est le domaine d'études de « {formation} » ? | Domaine (section 5) | Free text, asked once per education entry. Skipped if there is none. | Yes |
 
 ### C. Style d'écriture (section 12)
 
@@ -111,6 +111,16 @@ When #58 is implemented, an optional question follows question 9: may the agent 
 | 11 | Sur quoi puis-je m'appuyer pour reprendre ton style d'écriture ? | Sources de style | One of `posts`, `lettres`, `les deux`, `aucun` | No |
 
 See [Writing style](#writing-style) below.
+
+### D. Divers (section 13)
+
+| # | Question asked | Field | Expected format | Required |
+| --- | --- | --- | --- | --- |
+| 12 | As-tu des centres d'intérêt, des participations à des concours de code ou des contributions open source à mettre sur ton CV ? | Divers | One item per line, or `aucun` | No |
+
+- The agent proposes a type for each item (`open source`, `concours` or `centre d'intérêt`) and writes it in section 13, with the French text as given by the user. The AI translates it into English. The user reviews both in `profil.md`.
+- The agent never adds an item or a detail the user did not give.
+- These items are optional lines of the "Langues & divers" section of the CV. They are shown only when space remains, as defined in [`editable-areas.md`](editable-areas.md).
 
 ## Writing style
 
@@ -185,4 +195,10 @@ reviewed: false
 
 **Portrait** <!-- src: ai -->
 Ton direct et chaleureux. Phrases courtes, souvent introduites par un verbe d'action. Exemples concrets chiffrés plutôt qu'adjectifs.
+
+## 13. Divers
+
+| Type | Texte (FR) | Texte (EN) |
+| --- | --- | --- |
+| centre d'intérêt | Escalade et randonnée | Climbing and hiking <!-- src: ai --> |
 ```
