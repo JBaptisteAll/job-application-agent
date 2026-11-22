@@ -1,0 +1,16 @@
+{
+  "nom": "Camille Martin",
+  "ville": "Lyon",
+  "telephone": "06 00 00 00 00",
+  "email": "camille.martin@example.com",
+  "entreprise": "Exemple Voyages & Co",
+  "recruteur": null,
+  "ville_poste": "Villeurbanne",
+  "lieu_date": "Lyon",
+  "titre": "Data Analyst - Pricing & Revenue",
+  "corps": [
+    "Fixer le bon prix au bon moment, c'est le cœur du métier d'Exemple Voyages. Votre équipe pricing cherche quelqu'un capable de relier les données de réservation aux décisions tarifaires, et c'est précisément ce que je fais depuis six ans, d'abord comme Revenue Manager, aujourd'hui comme Data Analyst.",
+    "Chez Exemple Data, j'ai conçu un modèle dbt de suivi des ventes, de l'ingestion aux marts, avec 40 tests automatisés. Les cinq tableaux de bord Power BI qui en découlent sont utilisés chaque semaine par les équipes commerciales. Le reporting hebdomadaire, lui, tourne seul sur GitHub Actions : quatre heures gagnées chaque semaine.",
+    "Mon passage par l'hôtellerie compte autant. Suivre chaque jour le taux d'occupation et le RevPAR m'a appris ce qu'un indicateur doit dire à un directeur commercial à 8 heures du matin. Votre stack SQL, dbt et Power BI est celle que j'utilise au quotidien."
+  ]
+}

@@ -1,6 +1,6 @@
 # Editable areas of the CV and cover letter
 
-> Status: phase 1 specification, updated in phase 2. Related issues: #17 (this document), #14 (`profil.md` structure), #16 (onboarding), #18 (CV template), #57 (experience and project files).
+> Status: phase 1 specification, updated in phase 2. Related issues: #17 (this document), #14 (`profil.md` structure), #16 (onboarding), #18 (CV template), #19 (cover letter template), #57 (experience and project files).
 
 This document defines what the agent may change in the CV and the cover letter for each job offer, and what always stays untouched. It is the main safeguard against invented content: every rule below can be checked automatically.
 
@@ -10,7 +10,7 @@ This document defines what the agent may change in the CV and the cover letter f
 2. **Three levels of freedom.** Every area is either copied, selected or written (see [Levels](#levels)).
 3. **No invention.** The no-invention rule of [`experience-project-files.md`](experience-project-files.md) applies to every written area of both documents: each tool, figure or result must come from `profil.md`, `experiences.md` or `projets.md`.
 4. **Files are corrected, never documents.** A wrong value is corrected in the source files, as defined in [`profil-structure.md`](profil-structure.md). The agent never fixes a fact directly in a generated document.
-5. **Consistent documents.** The CV and the cover letter of an application always show the same title, the same location and the same contact details.
+5. **Consistent documents.** The CV and the cover letter of an application always show the same title and the same location. The letter shows a subset of the CV's contact details: name, phone and email.
 6. **A human always decides.** The agent never blocks on a judgment call. It flags it in the generation summary, and the user decides (see [Generation summary](#generation-summary)).
 
 ## Levels
@@ -98,13 +98,24 @@ As a last resort, the agent may remove an experience to make room for a personal
 
 ## Cover letter
 
+The cover letter uses the layout of a classic French letter, not the CV header. It shows no links, since the CV is attached.
+
+### Layout
+
+1. **Sender block**, at the top left: name in bold, then city, phone and email, one per line.
+2. **Recipient block**, on the right: company in bold, then the recruiter name or "Service recrutement", then the city of the job.
+3. **Place and date**, on the right.
+4. **Subject line**.
+5. **Salutation**, body, conclusion, closing formula and name.
+
 ### Copied areas
 
 | Area | Source | Rule |
 | --- | --- | --- |
-| Sender header | `profil.md`, section 1 | Name, phone and email, with the same rules as the CV. A hidden value is not shown. |
-| Salutation | Cover letter template | "Madame, Monsieur," or "Dear Hiring Manager," |
-| Closing formula and signature | Cover letter template | Fixed by the template. The agent never writes its own closing formula. |
+| Sender block | `profil.md`, section 1 | Name, phone and email, with the same rules as the CV. A hidden value is not shown, and its line is removed. No postal address and no links. |
+| Salutation | Cover letter template | "Madame, Monsieur," or "Dear Hiring Manager,". Kept even when the recruiter's name is known, so the agent never guesses a gender from a first name. |
+| Conclusion | Cover letter template | One fixed sentence: "Je serais disponible pour un échange à votre convenance." or "I would be glad to discuss this at your convenience." The agent never writes its own conclusion. |
+| Closing formula and name | Cover letter template | "Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées." or "Kind regards,", followed by the name. The agent never writes its own closing formula. |
 | Layout | Cover letter template | Never changed |
 
 ### Selected areas
@@ -112,17 +123,19 @@ As a last resort, the agent may remove an experience to make room for a personal
 | Area | Source | Rule |
 | --- | --- | --- |
 | Language | Job offer | French or English template, in the language of the offer |
-| Location in the header | Displayed location of the CV | Always the same as the CV |
-| City in the date line | Displayed location of the CV | If the displayed location is a country only, the date line shows the date alone. |
+| City in the sender block | Displayed location of the CV | Always the same as the CV |
+| Place in the date line | Displayed location of the CV | "Lyon, le 22 novembre 2026" or "Lyon, 22 November 2026". If the displayed location is a country only, the date line shows the date alone. |
 
 ### Written areas
 
 | Area | Source | Rule |
 | --- | --- | --- |
-| Recipient | Job offer | "À l'attention de l'équipe de recrutement de [company]", with the company name from the offer |
+| Company | Job offer | The company name, as written in the offer |
+| Recruiter | Job offer | The recruiter's name, only if the offer gives it. Otherwise "Service recrutement" or "Recruitment team". |
+| City of the job | Job offer | The city of the job. Left out if the offer gives none. |
 | Date | System date | The date of the day |
-| Subject line | CV title | "Candidature au poste de [title]", with exactly the same title as the CV |
-| Body | Source files, job offer, style portrait (#16) | See [Writing rules](#writing-rules) |
+| Subject line | CV title | "Candidature au poste de [title]" or "Application for the position of [title]", with exactly the same title as the CV |
+| Body | Source files, job offer, style portrait (#16) | At most 3 paragraphs. See [Writing rules](#writing-rules). |
 
 ### Facts used in the cover letter
 
@@ -142,7 +155,7 @@ Recommendations are never mentioned in the cover letter, as defined in `profil-s
 
 These rules apply to every user. They are universal formatting and quality rules.
 
-- At most 3 body paragraphs and 500 words in total.
+- At most 3 body paragraphs and 500 words in total, conclusion included.
 - At least one concrete fact per paragraph, such as a figure, a tool or a precise context, taken from the source files.
 - At least one direct reference to the offer: the company, its sector or its technical stack.
 - The keywords of the offer are reused.
