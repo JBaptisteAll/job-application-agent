@@ -43,7 +43,7 @@ This document defines what the agent may change in the CV and the cover letter f
 | Skills | `profil.md`, section 6 | The agent filters and reorders the skills, starting with those named in the offer. It never adds a skill and never renames one. |
 | Experience bullet points | `experiences.md` | 0 to 3 points per position, chosen by identifier: 2 or 3 for relevant positions, 0 or 1 for old positions or positions unrelated to the offer. Experiences stay in reverse chronological order. |
 | Projects | `projets.md` | The agent chooses and orders the projects that best match the offer. At least two projects are shown when two or more exist. |
-| Miscellaneous lines | `profil.md`, sections 10 and 12 | Up to two lines below the languages, chosen among volunteering, open source contributions, coding competitions and interests (see [Page fit](#page-fit)). |
+| Miscellaneous lines | `profil.md`, sections 10 and 13 | Up to two lines below the languages, chosen among volunteering, open source contributions, coding competitions and interests (see [Page fit](#page-fit)). |
 | Hidden items | `experiences.md`, `projets.md` | An experience or a project with `Afficher: non` never appears. |
 | Oldest experience | `experiences.md` | May be removed in favour of a project (see [Removing the oldest experience](#removing-the-oldest-experience)). |
 

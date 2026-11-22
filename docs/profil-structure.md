@@ -1,6 +1,6 @@
 # `profil.md` structure
 
-> Status: phase 1 specification. Related issues: #14 (this document), #15 (archive files), #16 (onboarding), #24 (contradictions), #25 (condensed texts and translations), #55 (English interface texts), #57 (experience and project files).
+> Status: phase 1 specification. Related issues: #14 (this document), #15 (archive files), #16 (onboarding), #24 (contradictions), #25 (condensed texts and translations), #55 (English interface texts), #57 (experience and project files), #18 (CV template).
 
 `profil.md` is the main profile file of the user. Every later step reads it: CV, cover letter and offer scoring. Experiences and projects are stored in two companion files, `experiences.md` and `projets.md` (see [`experience-project-files.md`](experience-project-files.md)). This document defines its layout, its sections and fields, the source of each value, and how missing or hidden values are handled.
 
@@ -17,7 +17,7 @@
 
 1. **Front matter** (YAML, between two `---` lines). It must be the very first thing in the file.
 2. **"About this file" text**, in the interface language, explaining how to use the file.
-3. **Sections 1 to 12**, in the order below.
+3. **Sections 1 to 13**, in the order below.
 
 ## Front matter
 
@@ -170,7 +170,7 @@ Skill levels are deliberately not recorded: they are never shown on a CV, and as
 
 ### 7. Certifications
 
-Nom, Organisme, Date, Lien, from `Certifications.csv`.
+Nom, Organisme, Date, Lien, from `Certifications.csv`. A CV shows them as one line at the end of the skills section (see [`editable-areas.md`](editable-areas.md)).
 
 ### 8. Projets
 
@@ -186,7 +186,7 @@ Langue and Niveau, from `Languages.csv`.
 
 ### 10. Bénévolat
 
-Organisme, Rôle, Cause, Début, Fin, Description, from `Volunteering.csv`.
+Organisme, Rôle, Cause, Début, Fin, Description, from `Volunteering.csv`. A CV can show volunteering as a miscellaneous line of the "Langues & divers" section (see [`editable-areas.md`](editable-areas.md)).
 
 ### 11. Références
 
@@ -202,6 +202,20 @@ Optional. Left out when the user answered `aucun` to the style question. How the
 | --- | --- | --- |
 | Sources | user | `posts`, `lettres` or `les deux` |
 | Portrait | ai | Short description of the user's style: tone, sentence length, recurring words, structure of a letter. Reviewed by the user. Style only, never content. |
+
+### 13. Divers
+
+Optional. Items the LinkedIn archive does not contain, given by the user through an optional onboarding question (see [`onboarding.md`](onboarding.md)). Written `aucun` when the user skips the question. A CV can show them as miscellaneous lines of the "Langues & divers" section, as defined in [`editable-areas.md`](editable-areas.md).
+
+A table with one row per item.
+
+| Column | Source | Notes |
+| --- | --- | --- |
+| Type | user | `open source`, `concours` or `centre d'intérêt` |
+| Texte (FR) | user | One short line, for example `Contributions à pandas (documentation)` or `Alpinisme et randonnée` |
+| Texte (EN) | ai | Translation, reviewed by the user |
+
+The no-invention rule of [`experience-project-files.md`](experience-project-files.md) applies: the agent translates these lines but never adds an item or a detail.
 
 ## Replaced files
 
@@ -272,4 +286,11 @@ Voir [`experiences.md`](experiences.md).
 ## 11. Références
 
 - Références sur demande : oui <!-- src: linkedin, Recommendations_Received.csv -->
+
+## 13. Divers
+
+| Type | Texte (FR) | Texte (EN) |
+| --- | --- | --- |
+| concours | Advent of Code 2025, 30 étoiles | Advent of Code 2025, 30 stars <!-- src: ai --> |
+| centre d'intérêt | Escalade et randonnée | Climbing and hiking <!-- src: ai --> |
 ```
