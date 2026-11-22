@@ -1,6 +1,6 @@
 # Experience and project files
 
-> Status: phase 1 specification. Related issues: #57 (this document), #14 (`profil.md` structure), #16 (onboarding), #17 (editable areas), #24 (contradictions), #58 (GitHub repositories).
+> Status: phase 1 specification. Related issues: #57 (this document), #14 (`profil.md` structure), #16 (onboarding), #17 (editable areas), #18 (CV template), #24 (contradictions), #58 (GitHub repositories).
 
 Experiences and projects are stored in two dedicated files, `experiences.md` and `projets.md`, next to `profil.md`. The agent builds them once, at onboarding, with more content than a single CV needs. Each later application only selects, orders and adapts this content, so every CV comes from the same reviewed base. This document defines the layout and fields of both files, their identifiers, and the rule that keeps enriched texts true.
 
@@ -24,7 +24,7 @@ This text follows the front matter of `experiences.md` (French version). `projet
 ```markdown
 > **À propos de ce fichier**
 >
-> Ce fichier contient **toutes tes expériences**, rédigées une fois pour toutes. Pour chaque offre, l'agent choisit les points les plus adaptés : un CV n'en affiche que 2 ou 3 par expérience. Pour corriger une information, corrige-la **ici**, jamais dans un CV déjà généré.
+> Ce fichier contient **toutes tes expériences**, rédigées une fois pour toutes. Pour chaque offre, l'agent choisit les points les plus adaptés : un CV en affiche de 0 à 3 par expérience, selon leur lien avec l'offre. Pour corriger une information, corrige-la **ici**, jamais dans un CV déjà généré.
 >
 > **Ce qu'il faut faire**
 > - Relis chaque point en français **et** en anglais. Tu peux en modifier, en supprimer ou en ajouter.
@@ -69,7 +69,7 @@ One entry per position from `Positions.csv`, most recent first. Each entry start
 ### Bullet point bank
 
 - **3 to 8 bullet points per position**, depending on how much the full text contains. The agent never adds points to reach a number: a short, old position gets 3, a rich, recent one up to 8.
-- At least 3 points give the agent a real choice when a CV shows 2 or 3 of them.
+- At least 3 points give the agent a real choice when a CV shows up to 3 of them. A CV shows 0 to 3 points per position, depending on its relevance to the offer, as defined in [`editable-areas.md`](editable-areas.md).
 - Each point is written in French **and** English under the same identifier. Selecting `b2` for an offer gives the same content in a French or an English CV, and the user can check each translation line by line.
 - Points are written for a CV: one line, an action verb first, the most concrete fact available.
 - The user can edit, delete or add points. A point written by the user gets `<!-- src: user -->`.
@@ -93,7 +93,7 @@ One entry per project from `Projects.csv`. Each entry starts with a level-3 head
 
 - **120 to 150 words per language.** It covers the business problem, the solution, the stack and the result.
 - This length is a target, not an obligation. When the full text is too short, the agent writes a shorter summary and says so, rather than filling it. The user can complete it.
-- The summary is not shown on a CV as is. For each offer, the agent writes a 2 or 3 line synthesis from it, under the rules of #17.
+- The summary is not shown on a CV as is. For each offer, the agent writes a 2 to 4 line synthesis from it, depending on the space left on the page, under the rules of [`editable-areas.md`](editable-areas.md).
 - **Stack safety rule:** the stack only lists skills present in section 6 of `profil.md`. A tool found in the full text but missing from section 6 is flagged to the user, who decides whether to add it to section 6.
 
 ## No-invention rule
