@@ -30,6 +30,22 @@ Prerequisites: Git and [uv](https://docs.astral.sh/uv/).
 
 From then on, a commit that fails a check is blocked. Fix the reported issue, run `git add` again, then commit.
 
+## Running the tests
+
+1. Install the project and its development dependencies:
+
+   ```
+   uv sync
+   ```
+
+2. Run the tests:
+
+   ```
+   uv run pytest
+   ```
+
+The CV template is `src/job_application_agent/templates/cv_template.docx`. It can be edited in Word: type each `{{ ... }}` or `{% ... %}` tag in one go, without changing its formatting in the middle, then run the tests to check that every tag still works.
+
 ## Contributing
 
 Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request, and [SECURITY.md](SECURITY.md) to report a vulnerability.
