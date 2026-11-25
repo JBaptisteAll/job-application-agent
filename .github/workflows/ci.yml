@@ -33,7 +33,7 @@ jobs:
   tests:
     name: tests
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -44,6 +44,15 @@ jobs:
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.13"
+
+      - name: Install LibreOffice and the Carlito font
+        # LibreOffice converts the rendered documents to PDF in tests/test_rendering.py.
+        # Carlito has the same metrics as Calibri, the template font, so the layout
+        # and page count match Word.
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends libreoffice-writer fonts-crosextra-carlito
+          soffice --version
 
       - name: Install uv
         run: python -m pip install uv==0.11.32
